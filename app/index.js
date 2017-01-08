@@ -1,1 +1,2 @@
-require('./network.js');
+// require('./network.js');
+require('./main');
