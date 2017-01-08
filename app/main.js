@@ -1,8 +1,8 @@
 const fs = require('fs');
-const Network = require('./numbers-recognition-network');
+const Network = require('./single-number-recognition-network');
 
 const DEFAULT_NETWORK_FILENAME = './app/network.json';
-const DEFAULT_TEST_DATA_AMOUNT = 20;
+const DEFAULT_TEST_DATA_AMOUNT = 100;
 
 
 main();  // <--- runs main function
