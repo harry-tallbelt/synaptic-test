@@ -10,8 +10,8 @@ The project is powered by Node.js, so a combination of `npm install` and `npm st
 At which point you might wonder why it doesn't stop. I've no idea yet.
 
 Synaptic.js seems to be unreasonably slow on simple architecures
-(it seems it is really build for recurrent NNs),so at some it seems
-to be a good idea to try out some other libraries.
+(it seems, it is really build for recurrent NNs),
+so it is a good idea to try out some other libraries.
 [This article](http://haileyfoster.com/Neural-Networks/) seems to give
 a brief owerview of several JS NN libraries, and
 [this one](https://habrahabr.ru/post/304414/) is specificaly
