@@ -1,5 +1,7 @@
 const fs = require('fs');
-const Network = require('./single-number-recognition-network');
+const synaptic = require('synaptic');
+const Network = synaptic.Network;
+const MyNetwork = require('./single-number-recognition-network');
 
 const DEFAULT_NETWORK_FILENAME = './app/network.json';
 const DEFAULT_TEST_DATA_AMOUNT = 100;
@@ -12,35 +14,32 @@ function main(filename, testDataAmount) {
     filename = filename || DEFAULT_NETWORK_FILENAME;
     testDataAmount = testDataAmount || DEFAULT_TEST_DATA_AMOUNT;
 
-    const dataset = Network.getData(testDataAmount);
+    const dataset = MyNetwork.getData(testDataAmount);
 
-    // TODO:
-    // Even using a desent JS serializing library (serialize-javascript),
-    // one cannot deserialize an object properly, because its prototype is not saved,
-    // and, while one can assign it by hand, it is not going to work for each subobject.
-    // (Clarification: it IS going to work with a lot of custom logic.)
-    // So, the solution is to learn how Network object is actually build
-    // and construct it properly from serialized data.
+    let network = loadNetwork(filename);
+    if (network == null) {
+        network = MyNetwork.trainNetwork(dataset);
+        saveNetwork(network, filename);
+    }
 
-    // let network = loadNetwork(filename);
-    // if (network == null) {
-    //     network = Network.trainNetwork(dataset);
-    //     saveNetwork(network, filename);
-    // }
+    // This returns a function equivalent to network.activate(),
+    // only it does not depend on the library (can be serialized).
+    // network.standalone();
 
-    const network = Network.trainNetwork(dataset);
-    Network.testNetwork(network, dataset);
+    MyNetwork.testNetwork(network, dataset);
 }
 
 function saveNetwork(network, filename) {
-    const json = JSON.stringify(network);
+    const networkData = network.toJSON();
+    const json = JSON.stringify(networkData);
     fs.writeFileSync(filename, json, 'utf8');
 }
 
 function loadNetwork(filename) {
     try {
         const json = fs.readFileSync(filename, 'utf8');
-        const network = JSON.parse(json);
+        const networkData = JSON.parse(json);
+        const network = Network.fromJSON(networkData);
         return network;
     } catch (err) {
         if (err.code === 'ENOENT') {
