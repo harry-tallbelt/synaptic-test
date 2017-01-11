@@ -42,4 +42,5 @@ The files in repo are:
   a default running option (it is required from the `main.js`).
 - `network.json` is the saved network. If it exists, the program
   will load and use it; if it doesn't exist, the program will
-  train a new one and save it. 
+  train a new one and save it.
+- Some other networks can be found in `networks/`.
