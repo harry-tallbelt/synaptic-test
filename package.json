@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/harry-tallbelt/synaptic-test#readme",
   "dependencies": {
+    "brain.js": "^0.7.0",
     "mnist": "^1.0.5",
     "synaptic": "^1.0.8"
   }

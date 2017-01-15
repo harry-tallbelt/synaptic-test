@@ -44,3 +44,8 @@ The files in repo are:
   will load and use it; if it doesn't exist, the program will
   train a new one and save it.
 - Some other networks can be found in `networks/`.
+- `brain-mnist-recogniser.js` is a mnist digit recognising NN,
+  built via brain.js library. brain.js learned faster and with
+  less memory and CPU consumption, than synaptic.js, so it could
+  be trained on larger datasets. In particular, a training set
+  of 3000 samples gave ~95% accuracy for the trained network.

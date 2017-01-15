@@ -1,2 +1,3 @@
 // require('./network.js');
-require('./main');
+// require('./main');
+require('./brain-mnist-recognizer')
